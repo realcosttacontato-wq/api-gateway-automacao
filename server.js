@@ -18,25 +18,38 @@ app.get("/", (req, res) => {
 
 app.post("/api/teste", async (req, res) => {
 
-  const dados = req.body;
+  try {
 
-  console.log("Dados recebidos:", dados);
+    const dados = req.body;
 
-  const resposta = await fetch("https://thalisson.app.n8n.cloud/webhook/e51ac874-cc53-42cc-b0a4-48f9dca9b45a", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(dados)
-  });
+    console.log("Dados recebidos:", dados);
 
-  const retorno = await resposta.text();
+    const resposta = await fetch("https://thalisson.app.n8n.cloud/webhook/e51ac874-cc53-42cc-b0a4-48f9dca9b45a", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dados)
+    });
 
-  res.json({
-    sucesso: true,
-    automacao: true,
-    respostaN8N: retorno
-  });
+    const retorno = await resposta.text();
+
+    res.json({
+      sucesso: true,
+      automacao: true,
+      respostaN8N: retorno
+    });
+
+  } catch (erro) {
+
+    console.log(erro);
+
+    res.status(500).json({
+      erro: true,
+      mensagem: "Erro interno"
+    });
+
+  }
 
 });
 
