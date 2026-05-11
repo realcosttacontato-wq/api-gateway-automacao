@@ -22,7 +22,7 @@ app.post("/api/teste", async (req, res) => {
 
   console.log("Dados recebidos:", dados);
 
-  const resposta = await fetch("https://thalisson.app.n8n.cloud/webhook-test/e51ac874-cc53-42cc-b0a4-48f9dca9b45a", {
+  const resposta = await fetch("https://thalisson.app.n8n.cloud/webhook/e51ac874-cc53-42cc-b0a4-48f9dca9b45a", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
